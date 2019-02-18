@@ -199,7 +199,8 @@ public:
 		// Open a MUI handle on construction and close on destruction.
 		// The name and guid arguments must point to static memory,
 		// since these pointers will be kept in the object as-is.
-		ErrorMsg::MuiSource::MuiSource(
+		//ErrorMsg::MuiSource::MuiSource(
+        MuiSource(
 			__in const wchar_t *name,
 			__in_opt const GUID *guid,
 			__in uint32_t testFlags = 0
@@ -429,7 +430,7 @@ inline Erref Erref::getChain()
 {
 	ErrorMsg *msg = get();
 	if (msg == NULL)
-		return NULL; // no error
+		return (Erref)0; // no error
 	return msg->chain_;
 }
 

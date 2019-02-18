@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "pch.h"
 
 static ErrorMsg::MuiSource LogErrorSource(L"Service", NULL);
 
@@ -333,5 +333,25 @@ void NTAPI EtwLogger::callback(
 		// do nothing
 		break;
 	}
+}
+
+/**
+ *  StdoutLogger
+ */
+
+StdoutLogger::~StdoutLogger()
+{
+
+}
+
+// The internal implementation of log()
+// This function must be internally synchronized, since it will
+// be called from multiple threads. Implemented in subclasses.
+void StdoutLogger::logBody(
+    __in Erref err,
+    __in Severity sev,
+    __in_opt std::shared_ptr<LogEntity> entity)
+{
+
 }
 

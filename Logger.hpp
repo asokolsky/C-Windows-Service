@@ -169,19 +169,19 @@ public:
 	);
 
 	// Closes the file.
-	virtual ~EtwLogger();
+	~EtwLogger();
 
 	// Close the logger at any time (no logging is possible after that).
 	// The errors get recorded and can be extracted with error().
 	void close();
 
 	// from Logger
-	virtual void logBody(
+	void logBody(
 		__in Erref err,
 		__in Severity sev,
 		__in_opt std::shared_ptr<LogEntity> entity
 	);
-	virtual void poll();
+	void poll();
 
 	// Get the logger's fatal error. Obviously, it would have to be reported
 	// in some other way.
@@ -235,7 +235,8 @@ protected:
 			err_(err),
 			sev_(sev),
 			entity_(entity)
-		{ }
+		{
+        }
 	};
 
 protected:
@@ -246,6 +247,25 @@ protected:
 	Severity origMinSeverity_; // the minimal severity as was set on creation
 	std::deque<BacklogEntry> backlog_; // backlog of messages to send when the provider becomes enabled
 	bool enabled_; // whether anyone is listening in ETW
+};
+
+class StdoutLogger : public Logger
+{
+public:
+    StdoutLogger(
+        _In_ Severity minSeverity = SV_DEFAULT_MIN
+    );
+    ~StdoutLogger();
+
+    // The internal implementation of log()
+    // This function must be internally synchronized, since it will
+    // be called from multiple threads. Implemented in subclasses.
+    void logBody(
+        __in Erref err,
+        __in Severity sev,
+        __in_opt std::shared_ptr<LogEntity> entity
+    );
+
 };
 
 #define NTSTATUS ULONG

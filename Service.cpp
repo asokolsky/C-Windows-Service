@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "pch.h"
 
 static ErrorMsg::MuiSource ServiceErrorSource(L"Service", NULL);
 
@@ -61,7 +61,7 @@ void WINAPI Service::serviceMain(
 	__in DWORD argc,
 	__in_ecount(argc) LPWSTR *argv)
 {
-	REAL_ASSERT(instance_ != NULL);
+	//assert(instance_ != NULL);
 
 	// Register the handler function for the service
 	instance_->statusHandle_ = RegisterServiceCtrlHandler(

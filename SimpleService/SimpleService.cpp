@@ -1,8 +1,4 @@
-// SimpleService.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-#include "pch.h"
-
+#include "../pch.h"
 
 /**
  *  MyService is derived from Service
@@ -11,9 +7,9 @@
 class MyService : public Service
 {
 protected:
-	// The background thread that will be executing the application.
-	// This handle is owned by this class.
-	HANDLE appThread_;
+    // The background thread that will be executing the application.
+    // This handle is owned by this class.
+    HANDLE appThread_;
 
 public:
 	// The exit code that will be set by the application thread on exit.
@@ -34,8 +30,9 @@ public:
 
 MyService::~MyService()
 {
-	if (appThread_ != INVALID_HANDLE_VALUE) {
-		CloseHandle(appThread_);
+	if (appThread_ != INVALID_HANDLE_VALUE) 
+    {
+	    CloseHandle(appThread_);
 	}
 }
 
