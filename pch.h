@@ -16,10 +16,8 @@
 #include <memory>
 #include <deque>
 
-#include "../Critical.hpp"
-#include "../ErrorHelpers.hpp"
-#include "../Logger.hpp"
+#include "Critical.hpp"
+#include "ErrorHelpers.hpp"
+#include "Logger.hpp"
 // TODO: reference additional headers your program requires here
-#include "../Service.hpp"
-
-
+#include "Service.hpp"
